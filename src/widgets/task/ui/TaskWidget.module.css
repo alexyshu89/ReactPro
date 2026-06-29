@@ -1,0 +1,21 @@
+.filters {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.filterBtn {
+  padding: 8px 12px;
+  background-color: #f3f4f6;
+  color: #333;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.activeBtn {
+  background-color: #22c55e;
+  color: #fff;
+}
+
