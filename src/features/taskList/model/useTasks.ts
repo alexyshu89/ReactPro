@@ -1,5 +1,6 @@
-import type { Task } from "entities/task/model/types";
 import { useState, useMemo } from "react";
+
+import type { Task } from "entities/task";
 
 export type Filter = "all" | "completed" | "incomplete";
 

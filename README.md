@@ -1,8 +1,4 @@
-# LESSON-1 (FSD)
+## Start for dev
 
-## Ветка: lesson-1
-
-## Start
-
-npm install
-npm run dev
+npm ci && npm run dev
+npm run build

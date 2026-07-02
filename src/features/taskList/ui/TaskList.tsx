@@ -1,7 +1,10 @@
-import { TaskCard } from "entities/task/ui/TaskCard";
-import { FilterButton } from "shared/buttons/filter-button";
-import type { Filter } from "../model/useTasks";
+import { TaskCard } from "entities/task";
+
+import { FilterButton } from "shared/buttons";
+
 import type { TaskListProps } from "../model/types";
+import type { Filter } from "../model/useTasks";
+
 import styles from "./TaskList.module.css";
 
 const FILTER_CONFIG: { type: Filter; label: string }[] = [

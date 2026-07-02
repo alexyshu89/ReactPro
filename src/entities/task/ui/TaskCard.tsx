@@ -1,6 +1,8 @@
+import { CustomButton } from "shared/buttons";
 import { CompletedIcon, InCompletedIcon, TrashIcon } from "shared/icons";
-import { CustomButton } from "shared/buttons/custom-button";
+
 import type { TaskCardProps } from "../model/types";
+
 import styles from "./TaskCard.module.css";
 
 export function TaskCard({ task, onRemove }: TaskCardProps) {

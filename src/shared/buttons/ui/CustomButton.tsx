@@ -1,4 +1,5 @@
 import type { CustomButtonProps } from "../model/types";
+
 import styles from "./CustomButton.module.css";
 
 export const CustomButton: React.FC<CustomButtonProps> = ({

@@ -5,3 +5,9 @@ export interface CustomButtonProps {
   name?: string;
   children?: ReactNode;
 }
+
+export interface FilterButtonProps {
+  label: string;
+  isActive: boolean;
+  onClick(): void;
+}

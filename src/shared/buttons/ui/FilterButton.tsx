@@ -1,4 +1,5 @@
 import type { FilterButtonProps } from "../model/types";
+
 import styles from "./FilterButton.module.css";
 
 export const FilterButton: React.FC<FilterButtonProps> = ({

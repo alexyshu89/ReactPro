@@ -1,72 +1,155 @@
 import js from "@eslint/js";
+import globals from "globals";
 import react from "eslint-plugin-react";
 import reactHooks from "eslint-plugin-react-hooks";
-import jsxA11y from "eslint-plugin-jsx-a11y";
+import reactRefresh from "eslint-plugin-react-refresh";
+import tseslint from "typescript-eslint";
+import prettierConfig from "eslint-config-prettier";
 import importPlugin from "eslint-plugin-import";
+import jsxA11y from "eslint-plugin-jsx-a11y";
 import boundaries from "eslint-plugin-boundaries";
-import tsParser from "@typescript-eslint/parser";
-import prettier from "eslint-config-prettier";
 
-export default [
-  js.configs.recommended,
-  prettier,
-
+export default tseslint.config(
+  { ignores: ["dist", "node_modules", ".tmp"] },
   {
-    files: ["**/*.{js,jsx,ts,tsx}"],
-
+    extends: [
+      js.configs.recommended,
+      ...tseslint.configs.recommendedTypeChecked,
+      ...tseslint.configs.stylisticTypeChecked,
+      importPlugin.flatConfigs.recommended,
+      importPlugin.flatConfigs.typescript,
+      jsxA11y.flatConfigs.recommended,
+    ],
+    files: ["**/*.{ts,tsx}"],
     languageOptions: {
-      parser: tsParser,
-      ecmaVersion: 2020,
-      sourceType: "module",
+      ecmaVersion: 2023,
+      globals: globals.browser,
       parserOptions: {
-        project: "./tsconfig.json",
+        project: ["./tsconfig.app.json", "./tsconfig.node.json"],
+        tsconfigRootDir: import.meta.dirname,
       },
     },
-
     plugins: {
       react,
       "react-hooks": reactHooks,
-      "jsx-a11y": jsxA11y,
-      import: importPlugin,
+      "react-refresh": reactRefresh,
       boundaries,
     },
-
     settings: {
-      react: {
-        version: "detect",
+      react: { version: "detect" },
+      "import/resolver": {
+        typescript: {
+          alwaysTryTypes: true,
+          project: "./tsconfig.app.json",
+        },
       },
-
       "boundaries/elements": [
-        { type: "shared", pattern: "src/shared/*" },
-        { type: "entities", pattern: "src/entities/*" },
-        { type: "features", pattern: "src/features/*" },
-        { type: "widgets", pattern: "src/widgets/*" },
-        { type: "pages", pattern: "src/pages/*" },
         { type: "app", pattern: "src/app/*" },
+        { type: "pages", pattern: "src/pages/*" },
+        { type: "widgets", pattern: "src/widgets/*" },
+        { type: "features", pattern: "src/features/*" },
+        { type: "entities", pattern: "src/entities/*" },
+        { type: "shared", pattern: "src/shared/*" },
       ],
     },
-
     rules: {
-      ...react.configs.recommended.rules,
       ...reactHooks.configs.recommended.rules,
-      ...jsxA11y.configs.recommended.rules,
-      ...importPlugin.configs.recommended.rules,
+      "react-refresh/only-export-components": [
+        "warn",
+        { allowConstantExport: true },
+      ],
+      "react/react-in-jsx-scope": "off",
 
-      "boundaries/element-types": [
+      "import/order": [
+        "error",
+        {
+          groups: [
+            "builtin",
+            "external",
+            "internal",
+            "parent",
+            "sibling",
+            "index",
+          ],
+          pathGroups: [
+            { pattern: "app/**", group: "internal", position: "after" },
+            { pattern: "pages/**", group: "internal", position: "after" },
+            { pattern: "widgets/**", group: "internal", position: "after" },
+            { pattern: "features/**", group: "internal", position: "after" },
+            { pattern: "entities/**", group: "internal", position: "after" },
+            { pattern: "shared/**", group: "internal", position: "after" },
+          ],
+          pathGroupsExcludedImportTypes: ["builtin"],
+          "newlines-between": "always",
+          alphabetize: { order: "asc", caseInsensitive: true },
+        },
+      ],
+
+      "boundaries/dependencies": [
         "error",
         {
           default: "disallow",
+          message: "{{from.type}} нельзя импортировать из {{to.type}}",
           rules: [
-            { from: "features", allow: ["shared", "entities"] },
-            { from: "entities", allow: ["shared"] },
-            { from: "widgets", allow: ["shared", "features", "entities"] },
             {
-              from: "pages",
-              allow: ["widgets", "features", "entities", "shared"],
+              from: { type: "app" },
+              allow: [
+                {
+                  to: {
+                    type: [
+                      "pages",
+                      "widgets",
+                      "features",
+                      "entities",
+                      "shared",
+                    ],
+                  },
+                },
+              ],
+            },
+            {
+              from: { type: "pages" },
+              allow: [
+                { to: { type: ["widgets", "features", "entities", "shared"] } },
+              ],
+            },
+            {
+              from: { type: "widgets" },
+              allow: [{ to: { type: ["features", "entities", "shared"] } }],
+            },
+            {
+              from: { type: "features" },
+              allow: [{ to: { type: ["entities", "shared"] } }],
+            },
+            {
+              from: { type: "entities" },
+              allow: [{ to: { type: ["shared"] } }],
+            },
+            { from: { type: "shared" }, allow: [{ to: { type: ["shared"] } }] },
+            {
+              disallow: [
+                {
+                  to: {
+                    type: [
+                      "app",
+                      "pages",
+                      "widgets",
+                      "features",
+                      "entities",
+                      "shared",
+                    ],
+                    internalPath: "!index.{ts,tsx,js,jsx}",
+                  },
+                },
+              ],
+              message:
+                "Импорт из другого слайса разрешен только через его публичное API (index.ts)",
             },
           ],
         },
       ],
+      "@typescript-eslint/unbound-method": "off",
     },
   },
-];
+  prettierConfig,
+);
