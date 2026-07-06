@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 import { CustomButton } from "shared/buttons";
 import { CompletedIcon, InCompletedIcon, TrashIcon } from "shared/icons";
 
@@ -5,7 +7,10 @@ import type { TaskCardProps } from "../model/types";
 
 import styles from "./TaskCard.module.css";
 
-export function TaskCard({ task, onRemove }: TaskCardProps) {
+export const TaskCard = memo(function TaskCard({
+  task,
+  onRemove,
+}: TaskCardProps) {
   const { id, title, completed } = task;
 
   return (
@@ -19,4 +24,4 @@ export function TaskCard({ task, onRemove }: TaskCardProps) {
       </div>
     </div>
   );
-}
+});
