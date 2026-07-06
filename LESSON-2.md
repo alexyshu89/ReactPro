@@ -11,7 +11,7 @@ npm run build
 
 1. Выполнена оптимизация TaskCard с помощью React.memo
 2. Мемоизация списка задач с useMemo была выполнена в ветке lesson-1
-3. Выполнена моизация функций removeTask с useCallback
+3. Выполнена мемоизация функций removeTask с useCallback
 4. Выполнено доп задание
 
 # Дополнительная задача

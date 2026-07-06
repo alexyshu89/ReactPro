@@ -8,3 +8,7 @@ export interface TaskCardProps {
   task: Task;
   onRemove(id: string): void;
 }
+
+export interface GetTasksResponse {
+  todos: Task[];
+}
