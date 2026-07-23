@@ -1,9 +1,14 @@
-import { TaskPage } from "pages/tasks";
+import { Outlet } from "react-router-dom";
 
-function App() {
+import { Header } from "widgets/header/ui/Header";
+
+export function App() {
   return (
     <div>
-      <TaskPage />
+      <Header />
+      <main className="app-main">
+        <Outlet />
+      </main>
     </div>
   );
 }
