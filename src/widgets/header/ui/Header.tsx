@@ -6,6 +6,7 @@ export const Header = () => {
   const navItems = [
     { to: "/tasks", label: "LESSONS - 1, 2, 3" },
     { to: "/forms", label: "LESSON - 4" },
+    { to: "/use-ref", label: "LESSON - 5" },
   ];
 
   return (

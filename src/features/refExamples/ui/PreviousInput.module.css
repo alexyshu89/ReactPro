@@ -1,0 +1,21 @@
+.wrap {
+  padding: 20px;
+  text-align: center;
+}
+
+.field {
+  padding: 8px;
+  width: 250px;
+  border: 2px solid rgb(154, 151, 151);
+  border-radius: 8px;
+  outline: none;
+  font-size: 16px;
+  background-color: white;
+  color: black;
+}
+
+.text {
+  color: #666;
+  font-size: 14px;
+  margin-top: 10px;
+}
