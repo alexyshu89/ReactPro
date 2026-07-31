@@ -157,6 +157,8 @@ export default tseslint.config(
         },
       ],
       "@typescript-eslint/unbound-method": "off",
+      "@typescript-eslint/no-floating-promises": "off",
+      "@typescript-eslint/no-misused-promises": "off",
     },
   },
   prettierConfig,

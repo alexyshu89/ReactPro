@@ -4,9 +4,10 @@ import styles from "./Header.module.css";
 
 export const Header = () => {
   const navItems = [
-    { to: "/tasks", label: "LESSONS - 1, 2, 3" },
-    { to: "/forms", label: "LESSON - 4" },
-    { to: "/use-ref", label: "LESSON - 5" },
+    { to: "/tasks", label: "TASKS (LESSONS - 1, 2, 3)" },
+    { to: "/forms", label: "FORMS (LESSON - 4)" },
+    { to: "/use-ref", label: "USE_REF (LESSON - 5)" },
+    { to: "/profile", label: "PROFILE (LESSON - 6)" },
   ];
 
   return (
@@ -26,6 +27,18 @@ export const Header = () => {
             </NavLink>
           ))}
         </nav>
+        <div className={styles.login}>
+          <NavLink
+            key="login"
+            to={"/login"}
+            className={({ isActive }) => `
+                ${styles.navLink} 
+                ${isActive ? styles.active : ""}
+              `}
+          >
+            <span>"LOG IN (LESSON - 6)"</span>
+          </NavLink>
+        </div>
       </div>
     </header>
   );
