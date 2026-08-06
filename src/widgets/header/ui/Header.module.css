@@ -30,7 +30,7 @@
   gap: 14px;
   padding: 10px 20px;
   border-radius: 0.375rem;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
   text-decoration: none;
   transition: all 0.2s ease-in-out;
@@ -52,4 +52,8 @@
 .active:hover {
   background-color: var(--color-primary-light);
   color: var(--color-primary);
+}
+
+.login {
+  margin-left: "auto";
 }

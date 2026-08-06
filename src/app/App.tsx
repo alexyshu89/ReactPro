@@ -1,15 +1,17 @@
-import { Outlet } from "react-router-dom";
+import { AppRoutes } from "app/AppRoutes";
 
 import { Header } from "widgets/header/ui/Header";
 
+import { AuthProvider } from "features/authRouting/AuthContext";
+
 export function App() {
   return (
-    <div>
-      <Header />
-      <main className="app-main">
-        <Outlet />
-      </main>
-    </div>
+    <AuthProvider>
+      <div>
+        <Header />
+        <AppRoutes />
+      </div>
+    </AuthProvider>
   );
 }
 
