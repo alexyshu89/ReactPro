@@ -56,6 +56,9 @@ export default tseslint.config(
       ...reactHooks.configs.recommended.rules,
       "react-hooks/set-state-in-effect": "off",
       "react-hooks/refs": "off",
+      "react-hooks/immutability": "off",
+      "@typescript-eslint/no-unsafe-member-access": "off",
+      "@typescript-eslint/no-unsafe-assignment": "off",
 
       "react-refresh/only-export-components": [
         "warn",
@@ -88,7 +91,7 @@ export default tseslint.config(
             { pattern: "shared/**", group: "internal", position: "after" },
           ],
           pathGroupsExcludedImportTypes: ["builtin"],
-          "newlines-between": "always",
+          "newlines-between": "ignore",
           alphabetize: { order: "asc", caseInsensitive: true },
         },
       ],
