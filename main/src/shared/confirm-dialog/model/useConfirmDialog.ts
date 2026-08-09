@@ -20,7 +20,7 @@ export const showConfirmDialog = (options: DialogOptions): Promise<boolean> => {
         ...options,
         resolve: (result: boolean) => {
           resolve(result);
-          if (setDialogStateRef) setDialogStateRef(null); // Закрываем окно после выбора
+          if (setDialogStateRef) setDialogStateRef(null);
         },
       });
     } else {

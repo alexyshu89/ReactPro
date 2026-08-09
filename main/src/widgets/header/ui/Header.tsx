@@ -8,7 +8,8 @@ export const Header = () => {
     { to: "/forms", label: "FORMS (LESSON - 4)" },
     { to: "/use-ref", label: "USE_REF (LESSON - 5)" },
     { to: "/profile", label: "PROFILE (LESSON - 6)" },
-    { to: "/portal-showcase", label: "PORTAL(LESSON - 8)" },
+    { to: "/portal-showcase", label: "PORTAL (LESSON - 8)" },
+    { to: "/react19", label: "REACT 19 (LESSON - 9)" },
   ];
 
   return (
