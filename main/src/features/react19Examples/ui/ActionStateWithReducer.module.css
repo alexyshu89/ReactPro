@@ -1,0 +1,30 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 300px;
+}
+
+.field {
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  outline: none;
+}
+
+.btn {
+  padding: 10px;
+  border-radius: 4px;
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+  font-size: 14px;
+  width: 100%;
+}
+
+.success {
+  color: green;
+  margin-top: 15px;
+}
